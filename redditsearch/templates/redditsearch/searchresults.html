@@ -1,0 +1,7 @@
+{% for result in results %}
+<h1>{{ result.searchname }}</h1>
+Score | Post
+{% for post in result.posts %}
+<p>{{ post.score }} | <a href='{{post.link }}'>{{ post.title }}</a></p>
+{% endfor %}
+{% endfor %}
