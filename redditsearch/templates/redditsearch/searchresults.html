@@ -1,7 +1,18 @@
-{% for result in results %}
-<h1>{{ result.searchname }}</h1>
-Score | Post
-{% for post in result.posts %}
-<p>{{ post.score }} | <a href='{{post.link }}'>{{ post.title }}</a></p>
-{% endfor %}
-{% endfor %}
+<html>
+
+<head>
+  <link rel='stylesheet' type='text/css' href='https://necolas.github.io/normalize.css/8.0.1/normalize.css'>
+</head>
+
+<body>
+  {{ user.username }}
+
+  {% for result in results %} <h1>{{ result.searchname }}</h1>
+  Score | Post
+  {% for post in result.posts %}
+  <p>{{ post.score }} | <a href='{{post.link }}' target="_blank">{{ post.title }}</a></p>
+  {% endfor %}
+  {% endfor %}
+</body>
+
+</html>

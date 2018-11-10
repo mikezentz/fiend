@@ -100,64 +100,12 @@ def reddit_search(request):
         results.append({
             'searchname': search.searchname,
             'posts': json_formatted_results,
+            'hits': len(json_formatted_results),
         })
 
-    return render(request, 'redditsearch/searchresults.html', {'results': results})
+    return JsonResponse(results, safe=False)
+    # return render(request, 'redditsearch/searchresults.html', {'results': results})
 
-    #
-    #     import pdb
-    #     pdb.set_trace()
-    #
-    #     posts = set()
-    #
-    #     for forum in subreddits:
-    #         sr = r.subreddit(forum)
-    #         for submission in sr.hot(limit=500):
-    #             if not submission.selftext:
-    #                 continue
-    #
-    #             found = False
-    #             for term in searchterms:
-    #                 if term in submission.title.casefold() or term in submission.selftext.casefold():
-    #                     found = True
-    #
-    #             if found:
-    #                 matchedPost = RedditPost(forum, submission)
-    #                 posts.add(matchedPost)
-    #
-    #     maxscore = 1
-    #     mostrecent = 1
-    #     mostcomments = 1
-    #     for post in posts:
-    #         if post.score >= maxscore:
-    #             maxscore = post.score
-    #         if post.date >= mostrecent:
-    #             mostrecent = post.date
-    #         if post.comments >= mostcomments:
-    #             mostcomments = post.comments
-    #         for term in searchterms:
-    #             if term in post.body.casefold() or term in post.title.casefold():
-    #                 post.contains.append(term)
-    #         post.weight = (len(post.contains) / len(searchterms)) * .75
-    #         post.weight += (post.score / maxscore) * .05
-    #         post.weight += (post.date / mostrecent) * .15
-    #         post.weight += (post.comments / mostcomments) * .05
-    #
-    #     weighted_posts = sorted(
-    #         posts, key=lambda x: x.weight, reverse=True)
-    #
-    #     formatted_results = []
-    #     for post in weighted_posts:
-    #         post = {
-    #             'title': post.title,
-    #             'link': 'http://reddit.com' + post.link,
-    #             'subreddit': post.subreddit,
-    #             'matches': post.contains,
-    #             'date': post.date,
-    #             'score': post.weight,
-    #             'postid': post.id,
-    #         }
-    #         formatted_results.append(post)
-    #     results += formatted_results
-    #
-    # return JsonResponse(results, safe=False)
+
+def dashboard(request):
+    return render(request, 'redditsearch/dashboard.html')

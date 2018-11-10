@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel='stylesheet' type='text/css' href='https://necolas.github.io/normalize.css/8.0.1/normalize.css'>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <a href='/dashboard'>{{ user.username }}</a><br><br>
+
+  <div id="app" v-cloak>
+    <div v-for='result in results'>
+      <div v-on:click='result.display = !result.display'>Search: [[ result.searchname ]] <br>Results: [[ result.hits ]]</div>
+
+      <ul v-if='result.display'>
+        <li v-for='post in result.posts'><a :href='post.link' target='_blank'>[[ post.title ]]</a></li>
+      </ul>
+
+    </div>
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js'></script>
+
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      delimiters: ['[[', ']]'],
+      data: {
+        results: null,
+
+      },
+
+      methods: {
+        loadsearch: function() {
+          axios.get('http://localhost:8000/dashboard/redditsearch/')
+            .then((response) => {
+              console.log(response)
+              response.data = response.data.map(function(result) {
+                result.display = false
+                return result
+              })
+              this.results = response.data
+            })
+        }
+      },
+      created: function() {
+        this.loadsearch()
+      }
+
+    })
+  </script>
+</body>
+
+</html>
