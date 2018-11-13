@@ -101,10 +101,17 @@ def reddit_search(request):
             'searchname': search.searchname,
             'posts': json_formatted_results,
             'hits': len(json_formatted_results),
+            'id': search.id,
         })
 
     return JsonResponse(results, safe=False)
     # return render(request, 'redditsearch/searchresults.html', {'results': results})
+
+
+def search_delete(request, id):
+    search = get_object_or_404(Search, id=id)
+    search.delete()
+    return JsonResponse({})
 
 
 def dashboard(request):
