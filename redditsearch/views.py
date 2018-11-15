@@ -1,8 +1,6 @@
 from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import get_object_or_404, render
-import praw
-import os
-import json
+import praw, os, json
 from .models import Search
 
 # Create your views here.
