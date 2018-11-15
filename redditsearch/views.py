@@ -1,6 +1,8 @@
 from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import get_object_or_404, render
-import praw, os, json
+import praw
+import os
+import json
 from .models import Search
 
 # Create your views here.
@@ -61,9 +63,9 @@ def score_posts(posts, searchterms):
                 post.contains.append(term)
 
     for post in posts:
-        post.weight = (len(post.contains) / len(searchterms)) * .75
+        post.weight = (len(post.contains) / len(searchterms)) * .65
         post.weight += (post.score / maxscore) * .05
-        post.weight += (post.date / mostrecent) * .15
+        post.weight += (post.date / mostrecent) * .25
         post.weight += (post.comments / mostcomments) * .05
 
     weighted_posts = sorted(
@@ -72,6 +74,15 @@ def score_posts(posts, searchterms):
 
 
 def reddit_search(request):
+
+    if request.method == 'POST':
+        json_data = json.loads(request.body)
+        Search.objects.create(
+            searchname=json_data['searchname'],
+            subreddits=json_data['subreddits'],
+            searchterms=json_data['searchterms'],
+        )
+
     searches = Search.objects.all()
 
     results = []

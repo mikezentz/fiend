@@ -15,6 +15,7 @@
 <body>
   <a href='/dashboard'>{{ user.username }}</a><br><br>
 
+
   <div id="app" v-cloak>
     <div class="la-ball-atom la-dark" v-if='loading'>
       <div></div>
@@ -23,16 +24,30 @@
       <div></div>
     </div>
 
+    <button v-on:click='addsearch=true' v-if='loading==false'>New Search</button>
+    <div v-if='addsearch'>
+      <form @submit.prevent='createsearch'>
+        <div>Search Name: <input type="text" v-model="nsearchname"></div>
+        <div>Subreddits to search: <input type="text" v-model='nsubreddits'></div>
+        <div>Search terms: <input type="text" v-model='nsearchterms'></div>
+        <div><button v-on:click='loading=true, addsearch=false'>Submit</button></div>
+      </form>
+      <button v-on:click='addsearch=false'>Cancel</button>
+    </div>
+
+    <br><br>
+
     <div v-for='(result, index) in results'>
       <div v-on:click='result.display = !result.display'>Search: [[ result.searchname ]] <br>Results: [[ result.hits ]]</div>
       <button>Edit</button><button v-on:click='deletesearch(result.id, index)'>Delete</button>
       <ul v-if='result.display'>
-        <li v-for='post in result.posts'><a :href='post.link' target='_blank'>[[ post.title ]]</a></li>
+        <li v-for='post in result.posts'>[[ post.score ]] | <a :href='post.link' target='_blank'>[[ post.title ]]</a></li>
       </ul>
       <br><br>
     </div>
 
   </div>
+
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js'></script>

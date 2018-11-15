@@ -4,6 +4,11 @@ var app = new Vue({
 	data: {
 		results: null,
 		loading: true,
+		display: true,
+		addsearch: false,
+		nsearchname: '',
+		nsubreddits: '',
+		nsearchterms: '',
 
 	},
 
@@ -20,12 +25,27 @@ var app = new Vue({
 					this.results = response.data
 				})
 		},
+
 		deletesearch: function (id, index) {
 			axios.delete('/dashboard/delete/' + id)
 				.then(() => {
 					this.results.splice(index, 1)
 				})
 
+		},
+
+		createsearch: function () {
+			axios.post(
+					'/dashboard/redditsearch/', {
+						searchname: this.nsearchname,
+						subreddits: this.nsubreddits,
+						searchterms: this.nsearchterms,
+					}
+				)
+				.then(() => {
+					this.addsearch = false
+					this.loadsearch()
+				})
 		}
 	},
 	created: function () {
