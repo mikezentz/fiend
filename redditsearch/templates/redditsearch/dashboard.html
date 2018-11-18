@@ -26,7 +26,7 @@
 
     <button v-on:click='addsearch=true' v-if='loading==false'>New Search</button>
     <div v-if='addsearch'>
-      <form @submit.prevent='createsearch'>
+      <form @submit.prevent='createsearch()'>
         <div>Search Name: <input type="text" v-model="nsearchname"></div>
         <div>Subreddits to search: <input type="text" v-model='nsubreddits'></div>
         <div>Search terms: <input type="text" v-model='nsearchterms'></div>
@@ -38,11 +38,22 @@
     <br><br>
 
     <div v-for='(result, index) in results'>
-      <div v-on:click='result.display = !result.display'>Search: [[ result.searchname ]] <br>Results: [[ result.hits ]]</div>
-      <button>Edit</button><button v-on:click='deletesearch(result.id, index)'>Delete</button>
-      <ul v-if='result.display'>
-        <li v-for='post in result.posts'>[[ post.score ]] | <a :href='post.link' target='_blank'>[[ post.title ]]</a></li>
-      </ul>
+      <div>
+        <div v-on:click='result.display = !result.display'>Search: [[ result.searchname ]] <br>Results: [[ result.hits ]]</div>
+        <button v-on:click='result.edit=true'>Edit</button><button v-on:click='deletesearch(result.id, index)'>Delete</button>
+        <ul v-if='result.display'>
+          <li v-for='post in result.posts'>[[ post.score ]] | <a :href='post.link' target='_blank'>[[ post.title ]]</a></li>
+        </ul>
+        <div v-if='result.edit'>
+          <form @submit.prevent='editsearch(result, index)'>
+            <div>Search Name: <input type="text" v-model='result.searchname'></div>
+            <div>Subreddits to search: <input type="text" v-model='result.subreddits'></div>
+            <div>Search terms: <input type="text" v-model='result.searchterms'></div>
+            <input type='hidden' v-model:value='result.id'><input type='hidden' v-model='index'>
+            <div><button>Submit</button></div>
+          </form>
+        </div>
+      </div>
       <br><br>
     </div>
 

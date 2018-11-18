@@ -33,7 +33,7 @@ def find_matches(subreddits, searchterms):
 
     for subreddit in subreddits:
         sr = r.subreddit(subreddit)
-        for submission in sr.hot(limit=10):
+        for submission in sr.hot(limit=100):
             if not submission.selftext:
                 continue
 
@@ -108,6 +108,8 @@ def reddit_search(request):
             json_formatted_results.append(post)
         results.append({
             'searchname': search.searchname,
+            'subreddits': ','.join(subreddits),
+            'searchterms': ','.join(searchterms),
             'posts': json_formatted_results,
             'hits': len(json_formatted_results),
             'id': search.id,
@@ -121,6 +123,11 @@ def search_delete(request, id):
     search = get_object_or_404(Search, id=id)
     search.delete()
     return JsonResponse({})
+
+
+def edit_search(request, id):
+    search_delete(request, id)
+    reddit_search(request)
 
 
 def dashboard(request):

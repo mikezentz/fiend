@@ -9,6 +9,8 @@ var app = new Vue({
 		nsearchname: '',
 		nsubreddits: '',
 		nsearchterms: '',
+		resultid: '',
+		index: '',
 
 	},
 
@@ -20,6 +22,7 @@ var app = new Vue({
 					console.log(response)
 					response.data = response.data.map(function (result) {
 						result.display = false
+						result.edit = false
 						return result
 					})
 					this.results = response.data
@@ -34,19 +37,36 @@ var app = new Vue({
 
 		},
 
-		createsearch: function () {
+		createsearch: function (result) {
+			let data
+			if (result) {
+				data = {
+					searchname: result.searchname,
+					subreddits: result.subreddits,
+					searchterms: result.searchterms,
+				}
+			} else {
+				data = {
+					searchname: this.nsearchname,
+					subreddits: this.nsubreddits,
+					searchterms: this.nsearchterms,
+				}
+			}
 			axios.post(
-					'/dashboard/redditsearch/', {
-						searchname: this.nsearchname,
-						subreddits: this.nsubreddits,
-						searchterms: this.nsearchterms,
-					}
+					'/dashboard/redditsearch/',
+					data
 				)
 				.then(() => {
 					this.addsearch = false
 					this.loadsearch()
 				})
+		},
+
+		editsearch: function (result, index) {
+			this.deletesearch(result.id, index)
+			this.createsearch(result)
 		}
+
 	},
 	created: function () {
 		this.loadsearch()
