@@ -4,6 +4,7 @@ import praw
 import os
 import json
 from .models import Search
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -73,6 +74,7 @@ def score_posts(posts, searchterms):
     return weighted_posts
 
 
+@login_required
 def reddit_search(request):
 
     if request.method == 'POST':
@@ -81,9 +83,10 @@ def reddit_search(request):
             searchname=json_data['searchname'],
             subreddits=json_data['subreddits'],
             searchterms=json_data['searchterms'],
+            user=request.user,
         )
 
-    searches = Search.objects.all()
+    searches = request.user.searches.all()
 
     results = []
 
@@ -130,5 +133,6 @@ def edit_search(request, id):
     reddit_search(request)
 
 
+@login_required
 def dashboard(request):
     return render(request, 'redditsearch/dashboard.html')
