@@ -136,3 +136,8 @@ def edit_search(request, id):
 @login_required
 def dashboard(request):
     return render(request, 'redditsearch/dashboard.html')
+
+
+@login_required
+def test(request):
+    return render(request, 'redditsearch/test.html')

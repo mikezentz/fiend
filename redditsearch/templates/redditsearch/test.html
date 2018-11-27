@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FIEND | FInd ENgage Deliver</title>
+  <link rel='stylesheet' href='{% static "css/style.css" %}'>
+</head>
+
+<body>
+
+  <div id='app'>
+    <div>
+      <div class='search-header'>
+        <div class='title'>search title</div>
+        <div class='search-utility'>
+          <div class='search-delete'>delete</div>
+          <div class='search-action' @click='results=!results'>
+            <div class='result-count'>121</div>
+            <div class='drop-down'>^</div>
+          </div>
+        </div>
+      </div>
+      <div class='search-content' :class='{collapsed:results}'>
+        <div class='search-item card'>
+          <div class='score'>55</div>
+          <div class='post-title'>Name of some post on reddit</div>
+          <div class='link'><a href='test.html' target='_blank'>go</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+  <script src='{% static "js/vue.js"%}'></script>
+</body>
+
+</html>
