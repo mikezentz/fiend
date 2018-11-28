@@ -14,22 +14,22 @@
 <body>
 
   <div id='app'>
-    <div>
+    <div v-for='(result, index) in results' class='all-searches'>
       <div class='search-header'>
-        <div class='title'>search title</div>
+        <div class='title'>[[ result.searchname ]]</div>
         <div class='search-utility'>
           <div class='search-delete'>delete</div>
-          <div class='search-action' @click='results=!results'>
-            <div class='result-count'>121</div>
+          <div class='search-action' @click='result.display=!result.display'>
+            <div class='result-count'>[[ result.hits ]]</div>
             <div class='drop-down'>^</div>
           </div>
         </div>
       </div>
-      <div class='search-content' :class='{collapsed:results}'>
+      <div class='search-content' :class='{collapsed:result.display}' v-for='post in result.posts'>
         <div class='search-item card'>
-          <div class='score'>55</div>
-          <div class='post-title'>Name of some post on reddit</div>
-          <div class='link'><a href='test.html' target='_blank'>go</a></div>
+          <div class='score'>[[ post.score ]]</div>
+          <div class='post-title'>[[ post.title.slice(0,64) ]]</div>
+          <div class='link'><a :href='post.link' target='_blank'>go</a></div>
         </div>
       </div>
     </div>
@@ -39,6 +39,7 @@
 
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js'></script>
   <script src='{% static "js/vue.js"%}'></script>
 </body>
 
