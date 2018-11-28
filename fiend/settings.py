@@ -123,7 +123,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 #
 # Django Authentication
 #
-LOGIN_REDIRECT_URL = '/dashboard'
+LOGIN_REDIRECT_URL = '/dashboard/test'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 
 load_dotenv()

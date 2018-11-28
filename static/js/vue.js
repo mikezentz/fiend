@@ -41,14 +41,14 @@ var app = new Vue({
 			if (result) {
 				data = {
 					searchname: result.searchname,
-					subreddits: result.subreddits,
-					searchterms: result.searchterms,
+					subreddits: result.subreddits.split(' ').join(''),
+					searchterms: result.searchterms.split(' ').join(''),
 				}
 			} else {
 				data = {
 					searchname: this.nsearchname,
-					subreddits: this.nsubreddits,
-					searchterms: this.nsearchterms,
+					subreddits: this.nsubreddits.split(' ').join(''),
+					searchterms: this.nsearchterms.split(' ').join(''),
 				}
 			}
 			axios.post(
@@ -57,6 +57,9 @@ var app = new Vue({
 				)
 				.then(() => {
 					this.addsearch = false
+					this.nsearchname = ''
+					this.nsubreddits = ''
+					this.nsearchterms = ''
 					this.loadsearch()
 				})
 		},

@@ -15,7 +15,7 @@ def sign_up(request):
             user = form.save()
             login(request, user)
 
-            return redirect('/dashboard')
+            return redirect('/dashboard/test/')
     else:
         form = UserCreationForm()
 
