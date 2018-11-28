@@ -50,6 +50,9 @@ var app = new Vue({
 					subreddits: this.nsubreddits.split(' ').join(''),
 					searchterms: this.nsearchterms.split(' ').join(''),
 				}
+				this.nsearchname = ''
+				this.nsubreddits = ''
+				this.nsearchterms = ''
 			}
 			axios.post(
 					'/dashboard/redditsearch/',
@@ -57,9 +60,6 @@ var app = new Vue({
 				)
 				.then(() => {
 					this.addsearch = false
-					this.nsearchname = ''
-					this.nsubreddits = ''
-					this.nsearchterms = ''
 					this.loadsearch()
 				})
 		},
