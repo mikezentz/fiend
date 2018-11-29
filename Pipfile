@@ -8,6 +8,7 @@ django = "*"
 praw = "*"
 python-dotenv = "*"
 django-cors-headers = "*"
+django-heroku = "*"
 
 [dev-packages]
 
