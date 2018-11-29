@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('dashboard/', include('redditsearch.urls')),
     path('accounts/', include('accounts.urls')),
+    path('', include('redditsearch.urls'))
 ]
 
 # urlpatterns += staticfiles_urlpatterns()

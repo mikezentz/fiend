@@ -1,9 +1,14 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button>Log In</button>
-</form>
-{% endblock content %}
+<div class='login-or-signup'>
+  <div>
+    Login
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button>Log In</button>
+    </form>
+  </div>
+  <div>
+    {% endblock content %}
