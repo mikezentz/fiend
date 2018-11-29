@@ -1,86 +1,57 @@
-{% load static %}
+{% extends 'layout.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block content %}
+<div id='app'>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>FIEND | FInd ENgage Deliver</title>
-  <link rel='stylesheet' href='{% static "css/style.css" %}'>
-</head>
-
-<body>
-
-  {% if user.is_authenticated %}
-  {{ user.username }} <a href="{% url 'accounts:logout' %}">Log Out</a>
-  {% else %}
-  <a href="{% url 'accounts:login' %}">Log In</a>
-  <a href="{% url 'accounts:sign_up' %}">Sign Up</a>
-  {% endif %}
-
-
-  <div id='app'>
-
-    <div class='button'>
-      <div @click='addsearch=!addsearch' class=''>Create New Search</div>
-    </div>
-    <div class='search-content' :class='{collapsed:addsearch}'>
-      <div class='search-item card'>
-        <form @submit.prevent='createsearch()'>
-          <div>Search Name: <input type="text" v-model="nsearchname"></div>
-          <div>Subreddits to search: <input type="text" v-model='nsubreddits'></div>
-          <div>Search terms: <input type="text" v-model='nsearchterms'></div>
-          <div><button v-on:click='loading=true, addsearch=false'>Submit</button></div>
-        </form>
-      </div>
-    </div>
-
-
-    <div v-for='(result, index) in results' class='all-searches'>
-      <div class='search-header'>
-        <div class='title'>[[ result.searchname ]]</div>
-        <div class='search-utility'>
-          <div class='search-action' @click='result.edit=!result.edit'>edit</div>
-          <div class='search-action' @click='deletesearch(result.id, index)'>delete</div>
-          <div class='search-action' @click='result.display=!result.display'>
-            <div class='result-count'>[[ result.hits ]]</div>
-            <div :class='{"drop-down": result.display}'>^</div>
-          </div>
-        </div>
-      </div>
-      <div class='search-content' :class='{collapsed:result.edit}'>
-        <div class='search-item card'>
-          <form @submit.prevent='editsearch(result, index)'>
-            <div>Search Name: <input type="text" v-model='result.searchname'></div>
-            <div>Subreddits to search: <input type="text" v-model='result.subreddits'></div>
-            <div>Search terms: <input type="text" v-model='result.searchterms'></div>
-            <input type='hidden' v-model:value='result.id'><input type='hidden' v-model='index'>
-            <div><button>Submit</button></div>
-          </form>
-        </div>
-      </div>
-
-      <div v-for='post in result.posts'>
-        <div class='search-content' :class='{collapsed:result.display}'>
-          <div class='search-item card'>
-            <div class='score'>[[ post.score ]]</div>
-            <div class='post-title'>[[ post.title.slice(0,64) ]]</div>
-            <div class='link'><a :href='post.link' target='_blank'>go</a></div>
-          </div>
-        </div>
-      </div>
-
+  <div class='button'>
+    <div @click='addsearch=!addsearch' class=''>Create New Search</div>
+  </div>
+  <div class='search-content' :class='{collapsed:addsearch}'>
+    <div class='search-item card'>
+      <form @submit.prevent='createsearch()'>
+        <div>Search Name: <input type="text" v-model="nsearchname"></div>
+        <div>Subreddits to search: <input type="text" v-model='nsubreddits'></div>
+        <div>Search terms: <input type="text" v-model='nsearchterms'></div>
+        <div><button v-on:click='loading=true, addsearch=false'>Submit</button></div>
+      </form>
     </div>
   </div>
 
 
+  <div v-for='(result, index) in results' class='all-searches'>
+    <div class='search-header'>
+      <div class='title'>[[ result.searchname ]]</div>
+      <div class='search-utility'>
+        <div class='search-action' @click='result.edit=!result.edit'>edit</div>
+        <div class='search-action' @click='deletesearch(result.id, index)'>delete</div>
+        <div class='search-action' @click='result.display=!result.display'>
+          <div class='result-count'>[[ result.hits ]]</div>
+          <div :class='{"drop-down": result.display}'>^</div>
+        </div>
+      </div>
+    </div>
+    <div class='search-content' :class='{collapsed:result.edit}'>
+      <div class='search-item card'>
+        <form @submit.prevent='editsearch(result, index)'>
+          <div>Search Name: <input type="text" v-model='result.searchname'></div>
+          <div>Subreddits to search: <input type="text" v-model='result.subreddits'></div>
+          <div>Search terms: <input type="text" v-model='result.searchterms'></div>
+          <input type='hidden' v-model:value='result.id'><input type='hidden' v-model='index'>
+          <div><button>Submit</button></div>
+        </form>
+      </div>
+    </div>
 
+    <div v-for='post in result.posts'>
+      <div class='search-content' :class='{collapsed:result.display}'>
+        <div class='search-item card'>
+          <div class='score'>[[ post.score ]]</div>
+          <div class='post-title'>[[ post.title.slice(0,64) ]]</div>
+          <div class='link'><a :href='post.link' target='_blank'>go</a></div>
+        </div>
+      </div>
+    </div>
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js'></script>
-  <script src='{% static "js/vue.js"%}'></script>
-</body>
-
-</html>
+  </div>
+</div>
+{% endblock %}

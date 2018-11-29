@@ -24,7 +24,7 @@ body {
 }
 
 .search-header {
-  background: #2F4976;
+  background: #0E2B5B;
   display: flex;
   color: white;
   justify-content: space-between;
@@ -32,7 +32,7 @@ body {
 }
 
 .button {
-  background: #2F4976;
+  background: #0E2B5B;
   max-width: 250px;
   text-align: center;
   margin-left: auto;
@@ -40,8 +40,8 @@ body {
   color: white;
   border-radius: 10px;
   padding: .3em;
-  border: 3px solid lightgrey;
-  border-color: #031634;
+  border: 1px solid grey;
+  /* border-color: #031634; */
 }
 
 .search-header .search-utility {
@@ -54,15 +54,15 @@ body {
 
 .search-header .search-action {
   display: flex;
-  border: 3px solid lightgrey;
-  border-color: #031634;
+  border: 1px solid grey;
+  /* border-color: #031634; */
   padding: 4px;
   border-radius: 10px;
   margin-left: .3em;
 }
 
 .search-header .search-delete {
-  border: 3px solid lightgrey;
+  border: 1px solid lightgrey;
   border-color: #031634;
   padding: 4px;
   border-radius: 10px;
