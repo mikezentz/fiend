@@ -1,3 +1,4 @@
+import django_heroku
 from dotenv import load_dotenv
 import os
 
@@ -126,5 +127,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 #
 LOGIN_REDIRECT_URL = '/dashboard/test'
 LOGOUT_REDIRECT_URL = '/accounts/login'
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
 
 load_dotenv()
