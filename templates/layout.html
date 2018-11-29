@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 
@@ -6,22 +8,79 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Fiend</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://necolas.github.io/normalize.css/8.0.1/normalize.css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+
+  <style>
+    .nav {
+      display: flex;
+      background: #0E2B5B;
+      padding: .5vw;
+    }
+
+    .nav-element {
+      padding-right: 1em;
+      color: #A1AEC4;
+    }
+
+    .nav-element a {
+      text-decoration: none;
+      color: #A1AEC4;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: flex-end;
+      background: #53BBFF;
+      padding: .3vh;
+      color: black;
+      padding-right: 3vw;
+    }
+
+    .logo-main {
+      padding-left: 1vw;
+      padding-right: 1vw;
+      font-size: 8vh;
+      transform: skew(-15deg)
+    }
+  </style>
 </head>
 
 <body>
+
   <nav>
-    {% if user.is_authenticated %}
-    <a href="{% url 'accounts:logout' %}">Log Out</a>
-    {% else %}
-    <a href="{% url 'accounts:login' %}">Log In</a>
-    <a href="{% url 'accounts:sign_up' %}">Sign Up</a>
-    {% endif %}
+    <div class='nav'>
+      <div class='nav-element'>
+        <a href='/dashboard/test'> Home </a>
+      </div>
+      <div class='nav-element'>
+        <a href="/dashboard/test" {% if user.is_authenticated %} <a href="{% url 'accounts:logout' %}">Log Out</a>
+        | {{ user.username }}
+      </div>
+      <div class='nav-element'>
+        {% else %}
+        <a href="{% url 'accounts:login' %}">Log In</a>
+        <a href="{% url 'accounts:sign_up' %}">Sign Up</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class='logo'>
+      <div><img src='{% static "img/holmes.png" %}' width='80'> </div>
+      <div class='logo-main'>F I E N D</div>
+      <div class='logo-sub'>(Fi)nd (En)gage (D)eliver</div>
+    </div>
   </nav>
+
+
   <div class="content">
     {% block content %}
     {% endblock content %}
   </div>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js'></script>
+  <script src='{% static "js/vue.js"%}'></script>
 </body>
 
 </html>

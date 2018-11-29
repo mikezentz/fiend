@@ -8,5 +8,6 @@ urlpatterns = [
     path('test/', views.test, name='test'),
     path('redditsearch/', views.reddit_search, name='reddit_search'),
     path('delete/<str:id>', views.search_delete, name='search_delete'),
+    path('layout/', views.layout, name='layout'),
 
 ]

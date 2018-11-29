@@ -141,3 +141,7 @@ def dashboard(request):
 @login_required
 def test(request):
     return render(request, 'redditsearch/test.html')
+
+
+def layout(request):
+    return render(request, 'layout.html')
