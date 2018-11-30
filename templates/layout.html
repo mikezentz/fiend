@@ -11,33 +11,53 @@
   <link rel='stylesheet' href='https://necolas.github.io/normalize.css/8.0.1/normalize.css'>
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"> -->
   <link rel='stylesheet' href='{% static "css/style.css" %}'>
+
+  <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative" rel="stylesheet">
+
   <style>
+    @@font-face {
+      font-family: 'victorian';
+      src: url('{% static "fonts/GreatVictorian-Standard.orf" %}')
+    }
+
+    body {
+      background-image: url('{% static "img/wallpapers.jpg" %}');
+      background-size: 100%;
+    }
+
     .nav {
       display: flex;
-      background: #0E2B5B;
+      background-image: url('{% static "img/moulding.jpg" %}');
+      background-size: contain;
+      /* background: #0E2B5B; */
       padding: .5vw;
     }
 
     .nav-element {
       padding-right: 1em;
-      color: #A1AEC4;
+      color: black;
+      font-weight: bold;
     }
 
     .nav-element a {
       text-decoration: none;
-      color: #A1AEC4;
+      color: black;
+      font-weight: bold;
     }
 
     .logo {
       display: flex;
       justify-content: flex-end;
-      background: #53BBFF;
+      background-image: url('{% static "img/panels.jpg" %}');
+      /* background: #53BBFF; */
       padding: .3vh;
-      color: black;
+      color: #ffcc00;
       padding-right: 3vw;
+      font-family: 'Cinzel Decorative';
     }
 
     .logo-main {
+      font-family: 'Cinzel Decorative';
       padding-left: 1vw;
       padding-right: 1vw;
       font-size: 8vh;
@@ -75,7 +95,7 @@
       </div>
     </div>
     <div class='logo'>
-      <div><img src='{% static "img/holmes.png" %}' width='80'> </div>
+      <div><img src='{% static "img/goldholmes.svg" %}' width='60'> </div>
       <div class='logo-main'>F I E N D</div>
       <div class='logo-sub'>(Fi)nd (En)gage (D)eliver</div>
     </div>

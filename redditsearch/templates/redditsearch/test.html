@@ -19,16 +19,20 @@
 
 
   <div v-for='(result, index) in results' class='all-searches'>
-    <div class='search-header'>
-      <div class='title'>[[ result.searchname ]]</div>
-      <div class='search-utility'>
-        <div class='search-action' @click='result.edit=!result.edit'>edit</div>
-        <div class='search-action' @click='deletesearch(result.id, index)'>delete</div>
-        <div class='search-action' @click='result.display=!result.display'>
-          <div class='result-count'>[[ result.hits ]]</div>
-          <div :class='{"drop-down": result.display}'>^</div>
+    <div class='scroll'>
+      <div><img src='/static/img/scrollknob.png'></div>
+      <div class='search-header'>
+        <div class='title'>[[ result.searchname ]]</div>
+        <div class='search-utility'>
+          <div class='search-action' @click='result.edit=!result.edit'>edit</div>
+          <div class='search-action' @click='deletesearch(result.id, index)'>delete</div>
+          <div class='search-action' @click='result.display=!result.display'>
+            <div class='result-count'>[[ result.hits ]]</div>
+            <div :class='{"drop-down": result.display}'>^</div>
+          </div>
         </div>
       </div>
+      <div><img src='/static/img/scrollend2.png'></div>
     </div>
     <div class='search-content' :class='{collapsed:result.edit}'>
       <div class='search-item card'>

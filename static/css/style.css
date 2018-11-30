@@ -10,7 +10,15 @@ body {
 }
 
 .all-searches{
+  /* display: flex */
   padding: .5em;
+}
+
+.scroll{
+  display: flex;
+  width: 80vw;
+  justify-content: space-between;
+  max-height: 2.2em;
 }
 
 .card {
@@ -24,15 +32,18 @@ body {
 }
 
 .search-header {
-  background: #0E2B5B;
+  /* background: #0E2B5B; */
+  background-image: url('/static/img/scrollend.png');
+  background-size: contain;
   display: flex;
   color: white;
   justify-content: space-between;
   border-radius: 10px;
+  width: 100%;
 }
 
 .button {
-  background: #0E2B5B;
+  /* background: #0E2B5B; */
   max-width: 250px;
   text-align: center;
   margin-left: auto;
@@ -71,7 +82,8 @@ body {
 .search-content {
   overflow: hidden;
   max-height: 0px;
-  transition: all .5s ease-in-out;
+  transition: all 3s ease-in-out;
+  background: #FFE0AB;
 }
 
 .search-content.collapsed {
