@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 
+
 {% block content %}
 <div id='app'>
 
@@ -50,8 +51,8 @@
       <div class='search-content' :class='{collapsed:result.display}'>
         <div class='search-item card'>
           <div class='score'>[[ post.score ]]</div>
-          <div class='post-title'>[[ post.title.slice(0,64) ]]</div>
-          <div class='link'><a :href='post.link' target='_blank'>go</a></div>
+          <div class='post-title'>[[ post.title.slice(0,64) ]]... </div>
+          <div class='link'><a :href='post.link' target='_blank'>~go~</a></div>
         </div>
       </div>
     </div>

@@ -82,7 +82,9 @@ body {
 .search-content {
   overflow: hidden;
   max-height: 0px;
-  transition: all 3s ease-in-out;
+  margin: auto;
+  max-width: 90%;
+  transition: all 1s ease-in-out;
   background: #FFE0AB;
 }
 
@@ -92,8 +94,9 @@ body {
 }
 
 .search-item {
+  /* font-family: 'Cinzel Decorative'; */
   margin: 3vh;
-  max-width: 1024px;
+  width: 95%;
   margin-left: auto;
 }
 
@@ -103,14 +106,14 @@ body {
 
 .search-item .link {
   width: 150px;
-  background: #031634;
+  background: #f2f2f2;
   text-align: center;
   border-radius: 15px;
   height: 1.5em;
 }
 
 .search-item .link a{
-  color:white;
+  color: #654321;
   text-decoration: none;
 }
 

@@ -1,9 +1,11 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<form method="POST">
+<div style='background: #FFE0AB;'>
+  <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button>Sign Up</button>
-</form>
+  </form>
+</div>
 {% endblock content %}

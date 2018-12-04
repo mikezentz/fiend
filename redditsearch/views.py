@@ -145,3 +145,6 @@ def test(request):
 
 def layout(request):
     return render(request, 'layout.html')
+
+def welcome(request):
+    return render(request, 'redditsearch/welcome.html')

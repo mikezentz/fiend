@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block style %}
+<style>
+  .welcome {
+    background: #FFE0AB;
+    margin: 10vh auto;
+    width: 90%;
+    padding: 1em;
+    border-radius: 10px;
+  }
+</style>
+
+{% endblock style%}
+
+{% block content %}
+<div class='welcome'>
+  <p>FIEND enables organizations to locate niche online communities whose users interests
+    align with the organizations goals. FIEND uses a custom algorithm to search subreddits
+    for specific searchterms and then rank the results based on relevancy, timeliness, and
+    engagement from the community.</p>
+
+  How it works:
+  <ul>
+    <li>1. Select what subreddits you would like to search</li>
+    <li>2. Decide what you'd like to search form</li>
+    <li>3. Sit back and watch as your results come in</li>
+  </ul>
+  <p>Results are updated everytime you visit your dashboard!</p>
+
+  <p><a href="{% url 'accounts:sign_up' %}">Sign-up</a> and give it a try!</p>
+</div>
+{% endblock content %}
