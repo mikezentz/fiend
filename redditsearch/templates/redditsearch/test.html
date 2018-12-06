@@ -5,7 +5,7 @@
 <div id='app'>
 
   <div class='button'>
-    <div @click='addsearch=!addsearch' class=''>Create New Search</div>
+    <div @click='addsearch=!addsearch' class='newsearch'>Create New Search</div>
   </div>
   <div class='search-content' :class='{collapsed:addsearch}'>
     <div class='search-item card'>
@@ -51,7 +51,8 @@
       <div class='search-content' :class='{collapsed:result.display}'>
         <div class='search-item card'>
           <div class='score'>[[ post.score ]]</div>
-          <div class='post-title'>[[ post.title.slice(0,64) ]]... </div>
+          <div class='post-title'>[[ post.title ]]... </div>
+          <!-- post.title.slice(0,64) -->
           <div class='link'><a :href='post.link' target='_blank'>~go~</a></div>
         </div>
       </div>

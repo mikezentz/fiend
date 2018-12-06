@@ -11,8 +11,12 @@
   <link rel='stylesheet' href='https://necolas.github.io/normalize.css/8.0.1/normalize.css'>
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"> -->
   <link rel='stylesheet' href='{% static "css/style.css" %}'>
-
+  <link href="https://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Roboto" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Courgette|Dawning+of+a+New+Day|Neucha|Open+Sans|Roboto" rel="stylesheet">
+
+
   {% block style %}
 
   {% endblock style %}
@@ -37,15 +41,23 @@
     }
 
     .nav-element {
-      padding-right: 1em;
+
       color: black;
       font-weight: bold;
+      padding-right: 1em;
     }
 
     .nav-element a {
       text-decoration: none;
       color: black;
       font-weight: bold;
+      background: white;
+      border-width: 5px;
+      padding: .1em;
+      font-family: 'Cinzel Decorative';
+      border-color: #b29600;
+      border-style: double;
+
     }
 
     .logo {
@@ -98,9 +110,9 @@
       </div>
     </div>
     <div class='logo'>
-      <div><img src='{% static "img/goldholmes.svg" %}' width='60'> </div>
+      <div><img src='{% static "img/goldholmes.svg" %}' width='50'> </div>
       <div class='logo-main'>F I E N D</div>
-      <div class='logo-sub'>(Fi)nd (En)gage (D)eliver</div>
+      <div class='logo-sub'></div>
     </div>
   </nav>
 
